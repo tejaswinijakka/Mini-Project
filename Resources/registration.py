@@ -12,10 +12,11 @@ class UserRegistration(Resource):
         parser.add_argument('state',type=str,required=True,help="State cannot be  blank!")
         parser.add_argument('password',type=str,required=True,help="Password cannot be  blank!")
         parser.add_argument('phno',type=str,required=True,help="Phone Number cannot be  blank!")
+        parser.add_argument('location',type=str,required=True,help="Phone Number cannot be  blank!")
         data= parser.parse_args()
         try:
             x=query(f"""SELECT * FROM agrotrades.user_details WHERE email='{data['email']}'""",return_json=False)
-            if len(x)>0: return {"message":"A registration with that Roll number already exists."}
+            if len(x)>0: return {"message":"A registration with that Email ID already exists."}
         except:
             return {"message":"There was an error inserting into table."}
         #if(data['Previous_office']!=None and data['previous_position']!=None and data['years_of_service']!=None):
@@ -25,21 +26,8 @@ class UserRegistration(Resource):
                                                                  '{data['state']}',
                                                                  '{data['password']}',
                                                                  '{data['phno']}',
-                                                                   NULL)""")
+                                                                  NULL,
+                                                                 '{data['location']}')""")
         except:
             return {"message":"There was an error inserting into table."},400
         return {"message":"Successfully Inserted."},201
-
-class BuyorSell(Resource):
-    def post(self):
-        parser=reqparse.RequestParser()
-        parser.add_argument('email',type=str,required=True,help="Email ID cannot be  blank!")
-        parser.add_argument('usertype',type=int,required=True,help="Email ID cannot be  blank!")
-        data= parser.parse_args()
-        try:
-            x=query(f"""UPDATE agrotrades.user_details
-                        SET usertype = '{data['usertype']}'
-                        WHERE email='{data['email']}'""")
-        except:
-            return{"message":"There was an error updating"},400
-        return{"message":"Successfully updated"},201

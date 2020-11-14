@@ -44,7 +44,7 @@ class BuyorSell(Resource):
     def post(self):
         parser=reqparse.RequestParser()
         parser.add_argument('email',type=str,required=True,help="Email ID cannot be  blank!")
-        parser.add_argument('usertype',type=int,required=True,help="Email ID cannot be  blank!")
+        parser.add_argument('usertype',type=int,required=True,help="Usertype cannot be  blank!")
         data= parser.parse_args()
         try:
             x=query(f"""UPDATE agrotrades.user_details
