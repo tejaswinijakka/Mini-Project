@@ -1,3 +1,6 @@
+#TESTED SUCCESSFULLY
+#Farmer uploads data about his produce
+
 from flask_restful import Resource,reqparse
 from werkzeug.security import safe_str_cmp
 from flask_jwt_extended import create_access_token,jwt_required
@@ -26,12 +29,12 @@ class Commercial(Resource):
         data = parser.parse_args()
         #if data['quality']!=None and data['comments']!=None and data['rating']!=None and data['image1']!=None and data['image2']!=None and data['image3']!=None and data['image4']!=None and data['image5']!=None :
         try:
-            query(f"""INSERT INTO agrotrades.commercial VALUES({data['email']},
+            query(f"""INSERT INTO agrotrades.commercial(email,item_name,quantity,quality,comments,image1,image2,image3,image4,image5) 
+                                                        VALUES("{data['email']}",
                                                                 '{data['item_name']}',
                                                                 {data['quantity']},
                                                                 '{data['quality']}',
                                                                 '{data['comments']}',
-                                                            
                                                                 '{data['image1']}',
                                                                 '{data['image2']}',
                                                                 '{data['image3']}',
@@ -59,7 +62,8 @@ class Dairy(Resource):
         data = parser.parse_args()
         #if data['quality']!=None and data['comments']!=None and data['rating']!=None and data['image1']!=None and data['image2']!=None and data['image3']!=None and data['image4']!=None and data['image5']!=None :
         try:
-            query(f"""INSERT INTO agrotrades.dairy VALUES({data['email']},
+            query(f"""INSERT INTO agrotrades.dairy(email,item_named,quantityd,qualityd,commentsd,image1,image2,image3,image4,image5)
+                                                        VALUES('{data['email']}',
                                                                 '{data['item_named']}',
                                                                 {data['quantityd']},
                                                                 '{data['qualityd']}',
@@ -92,7 +96,8 @@ class Grains(Resource):
         data = parser.parse_args()
         #if data['quality']!=None and data['comments']!=None and data['rating']!=None and data['image1']!=None and data['image2']!=None and data['image3']!=None and data['image4']!=None and data['image5']!=None :
         try:
-            query(f"""INSERT INTO agrotrades.grains VALUES({data['email']},
+            query(f"""INSERT INTO agrotrades.grains(email,item_nameg,quantityg,qualityg,commentsg,image1,image2,image3,image4,image5)
+                                                        VALUES('{data['email']}',
                                                                 '{data['item_nameg']}',
                                                                 {data['quantityg']},
                                                                 '{data['qualityg']}',
@@ -125,7 +130,8 @@ class VegFruits(Resource):
         data = parser.parse_args()
         #if data['quality']!=None and data['comments']!=None and data['rating']!=None and data['image1']!=None and data['image2']!=None and data['image3']!=None and data['image4']!=None and data['image5']!=None :
         try:
-            query(f"""INSERT INTO agrotrades.dairy VALUES({data['email']},
+            query(f"""INSERT INTO agrotrades.vegfruits(email,item_namev,quantityv,qualityv,commentsv,image1,image2,image3,image4,image5) 
+                                                        VALUES('{data['email']}',
                                                                 '{data['item_namev']}',
                                                                 {data['quantityv']},
                                                                 '{data['qualityv']}',

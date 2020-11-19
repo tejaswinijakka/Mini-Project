@@ -14,20 +14,20 @@ class UserRegistration(Resource):
         parser.add_argument('phno',type=str,required=True,help="Phone Number cannot be  blank!")
         parser.add_argument('location',type=str,required=True,help="Phone Number cannot be  blank!")
         data= parser.parse_args()
-        try:
-            x=query(f"""SELECT * FROM agrotrades.user_details WHERE email='{data['email']}'""",return_json=False)
-            if len(x)>0: return {"message":"A registration with that Email ID already exists."}
-        except:
-            return {"message":"There was an error inserting into table."}
+        #try:
+        x=query(f"""SELECT * FROM agrotrades.user_details WHERE email='{data['email']}'""",return_json=False)
+        if len(x)>0: return {"message":"A registration with that Email ID already exists."}
+        #except:
+        #return {"message":"There was an error inserting into table."}
         #if(data['Previous_office']!=None and data['previous_position']!=None and data['years_of_service']!=None):
-        try:
-            query(f"""INSERT INTO agrotrades.user_details VALUES('{data['full_name']}',
+        #try:
+        query(f"""INSERT INTO agrotrades.user_details VALUES('{data['full_name']}',
                                                                  '{data['email']}',
                                                                  '{data['state']}',
                                                                  '{data['password']}',
                                                                  '{data['phno']}',
                                                                   NULL,
                                                                  '{data['location']}')""")
-        except:
-            return {"message":"There was an error inserting into table."},400
-        return {"message":"Successfully Inserted."},201
+        #except:
+            #return {"message":"There was an error inserting into table."},400
+        #return {"message":"Successfully Inserted."}

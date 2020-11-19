@@ -1,4 +1,6 @@
+#TESTED SUCCESSFULLY
 #First get request by purchaser
+#Used by buyers to see the produces uploaded by farmers.(1st GET REQUEST)
 
 from flask_restful import Resource,reqparse
 from werkzeug.security import safe_str_cmp

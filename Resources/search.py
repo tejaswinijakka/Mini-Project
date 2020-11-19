@@ -1,3 +1,6 @@
+#TESTED SUCCESSFULLY
+#APIs for search bar
+
 from flask_restful import Resource,reqparse
 from werkzeug.security import safe_str_cmp
 from flask_jwt_extended import create_access_token,jwt_required
